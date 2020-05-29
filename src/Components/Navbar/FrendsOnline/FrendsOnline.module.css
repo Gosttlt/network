@@ -1,0 +1,21 @@
+.ava_img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid lightgray;
+}
+.ava__bar {
+display: flex;
+justify-content: space-between;
+background: white;
+border-radius: 5px;
+box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
+margin-top: 20px;
+padding: 20px;
+}
+.userName {
+    margin: 0px;
+}
+.ava_Online_Bar {
+    text-align: center;
+}

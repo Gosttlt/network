@@ -1,0 +1,77 @@
+.dialogs {
+    display: flex;
+
+
+}
+
+.dialogs_items {
+    padding: 10px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.dialog {
+    padding: 15px;
+}
+
+.dialog_link {
+    text-decoration: none;
+    color: gray;
+}
+.dialog_link.active {
+    color: gray;
+    font-style: italic;
+    font-weight: 500;
+}
+.messages {
+    padding: 30px;
+    border:1px solid lightgray;
+    margin: 10px;
+    max-height: 300px;
+    width: 50%;
+    border-radius: 5px;
+    overflow: auto;
+    overflow-x: scroll;
+overflow-y: scroll;
+    
+}
+
+.message {
+   color: red;
+   padding: 10px;
+   border: 1px solid rgb(245, 245, 245);
+   margin: 10px;
+   border-radius: 5px;
+}
+.message:not {
+    background: red;
+}
+.addMessageBar {
+    position: absolute;
+    bottom: 0px;
+}
+
+.addMessageBar__textarea {
+    width: 50%;
+    border-radius: 5px;
+    color: gray;    
+   
+  }
+  .send_message {
+      background:white;
+      box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
+      border:2px solid lightgray;
+      border-radius: 5px;
+      color: black;
+      height: 30px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      outline: none;
+      float: right;
+      margin-right: 200px;  
+  }
+  .send_message:active {
+      background: lightgray;
+   
+    
+  }

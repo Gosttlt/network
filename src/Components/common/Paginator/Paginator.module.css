@@ -1,0 +1,19 @@
+.pogContainer {
+    overflow: auto;
+    width: 80%;
+    margin: 0 auto;
+    height: 20px;
+}
+.selectPageActive {
+    font-weight: bold;
+    }
+    
+    .pogContainer span {
+        padding: 5px;
+        border: 1px solid gray;
+    
+    }
+    .pogContainer span:hover {
+        cursor: pointer;
+    }
+    

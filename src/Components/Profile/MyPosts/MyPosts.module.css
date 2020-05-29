@@ -1,0 +1,19 @@
+.post {
+  border: 1px solid gray;
+  padding: 20px;
+  margin: 20px;
+}
+.h1Post {
+  display: block;
+  text-align: center;
+ font-size: 30px;
+ padding: 10px;
+}
+.addPostBar {
+padding: 20px;
+}
+.addPostBar__textarea {
+  width: 98%;
+  border-radius: 5px;
+  color: gray;
+}

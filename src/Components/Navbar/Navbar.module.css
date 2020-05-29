@@ -1,0 +1,18 @@
+.nav {
+  grid-area: n;
+  background: white;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
+}
+.nav__link {
+text-decoration: none;
+color: gray;
+font-weight: bold;
+padding: 20px 0px 20px 0px;
+margin: 0 auto;
+display: block;
+}
+.nav__link.active {
+  color:black;
+}
