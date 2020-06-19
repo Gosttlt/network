@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import './App.css';
-import { Route, withRouter, BrowserRouter } from 'react-router-dom';
+import { Route, withRouter, BrowserRouter, Redirect } from 'react-router-dom';
 import NavbarContainer from './Components/Navbar/NavbarContainer';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
@@ -19,10 +19,13 @@ import { WithSuspense } from './Components/hoc/WithSuspense';
 const DialogsContainer = React.lazy(()=> import('./Components/Dialogs/DialogsContainer'));
 
 
+
+
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp()
     }
+
     render() {
         if (!this.props.initialized) {
             return <Preloader />
@@ -32,6 +35,7 @@ class App extends React.Component {
                 <HeaderContainer />
                 <NavbarContainer store={this.props.store} />
                 <div className="app-wrapper-content" >
+                    <Route exect path='/' render={() => <Redirect to="profile" /> } />
                     <Route path='/dialogs' render={ WithSuspense(DialogsContainer)} />
                     <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)} />
                     <Route path='/users' render={WithSuspense(UsersContainer)} />
