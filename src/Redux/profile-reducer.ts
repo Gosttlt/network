@@ -12,6 +12,7 @@ type PostType = {
     likeCount: number
     user_name: string
     text: string
+    postId: number
 }
 
 type ContactsType = {
@@ -41,13 +42,14 @@ type ProfileType = {
 
 let initialState = {
     PostsData: [
-        { img: 'https://avatars.mds.yandex.net/get-pdb/1025945/86f10e6d-eab5-4572-8c07-c672b854d2a5/s1200?webp=false', likeCount: 20, user_name: 'Ivan Ivanov', text: 'post 1 teeeext raznii' },
-        { img: 'https://avatars.mds.yandex.net/get-pdb/1667260/3ec2154a-cd3f-4c24-b13b-6c60951dd0b0/s1200', likeCount: 30, user_name: 'Vasilii Ivanov', text: 'post 2 teeeext raznii' },
-        { img: 'https://i.livelib.ru/auface/471251/o/ab9f/Yurij_Belous.jpg', likeCount: 10, user_name: 'Petr Ivanov', text: 'post 3 teeeext raznii' },
+        { img: 'https://avatars.mds.yandex.net/get-pdb/1025945/86f10e6d-eab5-4572-8c07-c672b854d2a5/s1200?webp=false', likeCount: 20, user_name: 'Ivan Ivanov', text: 'post 1 teeeext raznii', postId:0 },
+        { img: 'https://avatars.mds.yandex.net/get-pdb/1667260/3ec2154a-cd3f-4c24-b13b-6c60951dd0b0/s1200', likeCount: 30, user_name: 'Vasilii Ivanov', text: 'post 2 teeeext raznii', postId:1 },
+        { img: 'https://i.livelib.ru/auface/471251/o/ab9f/Yurij_Belous.jpg', likeCount: 10, user_name: 'Petr Ivanov', text: 'post 3 teeeext raznii', postId:2 },
     ] as Array<PostType>,
     profile: null as ProfileType | null,
     status: '',
-    text:'',
+    text: '',
+
 }
 
 export type initialStateType = typeof initialState;
@@ -56,7 +58,7 @@ export type initialStateType = typeof initialState;
 
 
 
-const profileReducer = (state = initialState, action: any): initialStateType=> {
+const profileReducer = (state = initialState, action: any): initialStateType => {
     switch (action.type) {
         case ADD_POST:
             return {
@@ -66,6 +68,7 @@ const profileReducer = (state = initialState, action: any): initialStateType=> {
                     likeCount: 0,
                     user_name: 'Petr Ivanov',
                     text: action.postValue,
+                    postId: 3,
                 }, ...state.PostsData]
             }
         case SET_USER_PROFILE:
@@ -76,7 +79,14 @@ const profileReducer = (state = initialState, action: any): initialStateType=> {
         case SET_STATUS:
             return { ...state, status: action.status }
         case SAVE_PHOTO:
-            return { ...state, profile: { ...state.profile, photos: action.photoFile } as ProfileType }
+            return {
+                ...state, profile: { ...state.profile, photos: action.photoFile } as ProfileType
+            }
+        case DELETE_POST: 
+        return {
+            ...state, 
+            PostsData: state.PostsData.filter(post => post.postId !== action.postId)
+        }
 
         default: return state;
 
@@ -87,58 +97,58 @@ type AddPostActionType = {
     type: typeof ADD_POST
     postValue: string
 }
-export const addPost = (postValue:string):AddPostActionType => ({ type: ADD_POST, postValue });
+export const addPost = (postValue: string): AddPostActionType => ({ type: ADD_POST, postValue });
 type SetUserProfileActionType = {
     type: typeof SET_USER_PROFILE
     profile: ProfileType
 }
-const setUserProfile = (profile:ProfileType):SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
+const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
 type SetStatusActionType = {
     type: typeof SET_STATUS
     status: string
 }
-const setStatus = (status:string):SetStatusActionType  => ({ type: SET_STATUS, status });
+const setStatus = (status: string): SetStatusActionType => ({ type: SET_STATUS, status });
 type DeletePostActionType = {
     type: typeof DELETE_POST
     postId: number
 }
-const deletePost = (postId: number):DeletePostActionType => ({type: DELETE_POST, postId})
+export const deletePost = (postId: number): DeletePostActionType => ({ type: DELETE_POST, postId })
 type SetPhotoProfileActionType = {
     type: typeof SAVE_PHOTO
     photoFile: PhotosType
 }
-const setPhotoProfile = (photoFile:PhotosType):SetPhotoProfileActionType => ({ type: SAVE_PHOTO, photoFile });
+const setPhotoProfile = (photoFile: PhotosType): SetPhotoProfileActionType => ({ type: SAVE_PHOTO, photoFile });
 
 
 export const getProfile = (userId: number) => {
-    return async (dispatch:any) => {
+    return async (dispatch: any) => {
         let data = await profileAPI.getProfile(userId)
         dispatch(setUserProfile(data))
     }
 }
 
 export const getStatus = (userId: number) => {
-    return async (dispatch:any) => {
+    return async (dispatch: any) => {
         let data = await profileAPI.getStatus(userId)
         dispatch(setStatus(data))
     }
 }
 
 export const getUpdateStatus = (status: string) => {
-    return async (dispatch:any) => {
+    return async (dispatch: any) => {
         let response = await profileAPI.updateStatus(status)
         if (response.data.resultCode == 0) {
             dispatch(setStatus(status))
         }
     }
 }
-export const savePhoto = (file: any) => async (dispatch:any) => {
+export const savePhoto = (file: any) => async (dispatch: any) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode == 0) {
         dispatch(setPhotoProfile(response.data.data.photos))
     }
 }
-export const saveProfile = (profile: ProfileType) => async (dispatch:any, getState:any) => {
+export const saveProfile = (profile: ProfileType) => async (dispatch: any, getState: any) => {
     const userId = getState().auth.id;
     let response = await profileAPI.saveProfile(profile);
     if (response.data.resultCode == 0) {

@@ -8,8 +8,9 @@ import { TextArea } from '../../common/FormsControls/FormsControls';
 const maxLength10 = maxLengthCreator(10);
 
 
-const MyPosts = (props) => {
-  let PostDataMap = props.postData.map((el, index) => <Post img={el.img} user_name={el.user_name} likesCount={el.likeCount} text={el.text} key={index} />);
+
+const MyPosts = (props) => { 
+  let PostDataMap = props.postData.map((el, index) => <Post deletePost={props.deletePost} img={el.img} postId={el.postId} user_name={el.user_name} likesCount={el.likeCount} text={el.text} key={index} />);
   let addPostForm = (postvalue) => {
   props.addPost(postvalue.postvalue)
   }

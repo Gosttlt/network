@@ -9,3 +9,12 @@
   border-radius: 50%;
   border: 2px solid lightgray;
 }
+.delete_post {
+  float: right;
+  cursor: pointer;
+  font-size: 10px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  display: block;
+  padding: 0 4px 2px 4px;
+}
