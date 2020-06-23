@@ -16,8 +16,8 @@ import { initializeApp } from './Redux/app-reducer';
 import Preloader from './Components/common/Preloader/preloader';
 import store from './Redux/redux-store';
 import { WithSuspense } from './Components/hoc/WithSuspense';
+import { getWtf } from './Redux/users-reducer';
 const DialogsContainer = React.lazy(()=> import('./Components/Dialogs/DialogsContainer'));
-
 
 
 

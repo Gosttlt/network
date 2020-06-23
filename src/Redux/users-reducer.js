@@ -108,26 +108,4 @@ export const unfollow = (userId) => {
     }
 }
 
-// export const follow = (userId) => {
-//     return async (dispatch) => {
-//         dispatch(toggleFollowingProgress(true, userId))
-//         let data = await userAPI.userFollow(userId);
-//         if (data.resultCode == 0) {
-//             dispatch(followSuccess(userId))
-//         }
-//         dispatch(toggleFollowingProgress(false, userId))
-//     }
-// }
-// export const unfollow = (userId) => {
-//     return async (dispatch) => {
-//         dispatch(toggleFollowingProgress(true, userId))
-//         let data = await userAPI.userUnfollow(userId)
-//         if (data.resultCode == 0) {
-//             dispatch(unfollowSuccess(userId))
-//         }
-//         dispatch(toggleFollowingProgress(false, userId))
-//     }
-// }
-
-
 export default usersReducer;

@@ -7,7 +7,7 @@ const GET_CAPTCHA_URL_SUCCESS = 'NETWORK_AUTH_GET_CAPTCHA_URL_SUCCESS';
 
 
 let initialState  = {
-    id: null as null | string, 
+    id: null as null | number, 
     email: null as null | string,
     login: null as null | string,
     isAuth: false,
@@ -30,7 +30,7 @@ const authReducer = (state = initialState, action: any) :InitialStateType => {
 }
 
 type SetAuthUserDataActionPayloadType = {
-    id: string|null
+    id: number|null
     email: string|null
     login: string|null
     isAuth: boolean
@@ -41,7 +41,7 @@ type SetAuthUserDataActionType = {
     payload: SetAuthUserDataActionPayloadType
 }
 
-export const setAuthUserData = (id: string|null, email: string|null, login:string|null, isAuth: boolean) => ({ type: SET_USER_DATA, payload: { id, email, login, isAuth } });
+export const setAuthUserData = (id: number|null, email: string|null, login:string|null, isAuth: boolean) => ({ type: SET_USER_DATA, payload: { id, email, login, isAuth } });
 
 export type GetCaptchaUrlSuccessActionType = {
     type: typeof GET_CAPTCHA_URL_SUCCESS

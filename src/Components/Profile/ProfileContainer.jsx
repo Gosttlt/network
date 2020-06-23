@@ -8,6 +8,7 @@ import { compose } from 'redux';
 
 
 class ProfileContainer extends React.Component {
+ 
   refrashProfile(){
     let userId = this.props.match.params.userId;
     if (!userId) {
@@ -27,11 +28,13 @@ class ProfileContainer extends React.Component {
 if(prevProps.match.params.userId !== this.props.match.params.userId){this.refrashProfile()}
   }
   render() {
+  
     return <Profile {...this.props} isOwner={!this.props.match.params.userId} />
   }
 }
 
 let mapStateToProps = (state) => {
+  
   return {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
