@@ -2,7 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/preloader';
 import ava from '../../../img/ava2.jpg';
-import StatusProfileWithHooks from './ProfileStatusWithHooks';
+import StatusProfile from './ProfileStatus';
 import { useState } from 'react';
 import ProfileDataFormReduxForm from './ProfileDataForm';
 import { reduxForm } from 'redux-form';
@@ -39,7 +39,7 @@ const ProfileInfo = ({ profile, status, getUpdateStatus, isOwner, savePhoto, sav
           <ProfileDataFormReduxForm initialValues={profile} onSubmit={onSubmit} profile={profile} /> :
           <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => { setEditMode(true) }} />
         }
-        <b>Статус: </b><StatusProfileWithHooks status={status} getUpdateStatus={getUpdateStatus} />
+        <b>Статус: </b><StatusProfile status={status} getUpdateStatus={getUpdateStatus} />
       </div>
     </div>
   )

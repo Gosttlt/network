@@ -16,7 +16,6 @@ import { initializeApp } from './Redux/app-reducer';
 import Preloader from './Components/common/Preloader/preloader';
 import store from './Redux/redux-store';
 import { WithSuspense } from './Components/hoc/WithSuspense';
-import { getWtf } from './Redux/users-reducer';
 const DialogsContainer = React.lazy(()=> import('./Components/Dialogs/DialogsContainer'));
 
 
@@ -38,7 +37,7 @@ class App extends React.Component {
                     <Route exect path='/' render={() => <Redirect to="profile" /> } />
                     <Route path='/dialogs' render={ WithSuspense(DialogsContainer)} />
                     <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)} />
-                    <Route path='/users' render={WithSuspense(UsersContainer)} />
+                    <Route path='/users' render={()=><UsersContainer pageTitle={'Samurai'}/>} />
                     <Route path='/login' render={WithSuspense(LoginPage)} />
                     <Route path='/news' component={News} />
                     <Route path='/music' component={Music} />
